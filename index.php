@@ -1,8 +1,8 @@
 <?php
     include 'function.php';
     $SERVER = "localhost";            
-    $USER   = "loic";                 
-    $MDP    = "loic";                  
+    $USER   = "user";                 
+    $MDP    = "mdp";                  
     $BD     = "spotify";
 
     echo "<br><br><br>";
