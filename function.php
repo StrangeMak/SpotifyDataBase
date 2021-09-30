@@ -20,7 +20,7 @@ function recuperationData()
     fgets($file);
     while (($column = fgetcsv($file, 10000, ",")) !== FALSE) {
 
-        $sqlInsert = "INSERT into test (Id,Title,Artist,TopGenre,Year,BPM,Energy,Danceability,Loudness,
+        $sqlInsert = "INSERT into musiques (Id,Title,Artist,TopGenre,Year,BPM,Energy,Danceability,Loudness,
                 Liveness,Valence,Length,Acousticness,Speechiness,Popularity)
                 values ('" . $column[0] . "','" . $column[1] . "','" . $column[2] . "','" . $column[3] . "','" . $column[4] ."','" .
                  $column[5] ."','" . $column[6] ."','" . $column[7] ."','" . $column[8] ."','" . $column[9] ."','" . $column[10] ."','" .
@@ -38,11 +38,23 @@ function recuperationData()
     }
 }
 
-/*function trieData();*/
-function affichageData(){
+function trieData($colonne)
+{
     global $connexion;
-    $sql = "SELECT * from test";
-    $result = mysqli_query($connexion, $sql);
+    if (!$connexion) {
+    die("Connection failed: " . mysqli_connect_error());
+    }
+
+    $sql = "SELECT * FROM musiques ORDER BY $colonne Asc";
+    affichageData($sql);
+    $conn->close();
+}
+
+
+function affichageData($query = "SELECT * from musiques limit 1000"){
+    
+    global $connexion;
+    $result = mysqli_query($connexion, $query);
     $all_property = array();
 
     $html = '';
