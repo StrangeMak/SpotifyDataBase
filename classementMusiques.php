@@ -5,7 +5,6 @@
     $MDP    = "mdp";                  
     $BD     = "spotify";
 
-    echo "<br><br><br>";
     $connexion = ConnectDataBase($SERVER, $USER, $MDP, $BD); // connexion à la BD
 ?>
 
@@ -27,19 +26,21 @@
     <title>Classement musiques Spotify</title>
   </head>
   <body style="background-color: #f4efe7">
-  <header>
-    <nav class="navbar py-0 navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
-      <a class="navbar-brand" href="index.php">
-        <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
-      </a>
-      <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
-      <ul class="nav justify-content-center">
-        <li class="nav-item ms-2">
-          <a class="nav-link text-white" href="index.php">Accueil</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
+  <div class="container">
+    <div class="row mb-3">
+      <nav class="navbar py-0 navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
+        <a class="navbar-brand" href="index.php">
+          <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
+        </a>
+        <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
+        <ul class="nav justify-content-center">
+          <li class="nav-item ms-2">
+            <a class="nav-link text-white" href="index.php">Accueil</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
   
 <?php
     //recuperationData();
