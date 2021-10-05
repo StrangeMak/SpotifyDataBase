@@ -38,15 +38,19 @@ function recuperationData()
     }
 }
 
-function trieData($colonne)
+function trieData($colonne, $searchText = "")
 {
     global $connexion;
     if (!$connexion) {
     die("Connection failed: " . mysqli_connect_error());
     }
-
-    $sql = "SELECT * FROM musiques ORDER BY $colonne Asc limit 100";
-    affichageData($sql);
+    if ($searchText != ""){
+        $sql = 'SELECT * FROM musiques WHERE TopGenre LIKE "%'.$searchText.'%" ORDER BY '.$colonne.' Asc limit 200';
+    }
+    else {
+        $sql = "SELECT * FROM musiques ORDER BY $colonne Asc limit 200";
+    }
+    affichageData($sql, $searchText);
     $connexion->close();
 }
 
@@ -55,10 +59,13 @@ function rechercher($searchText){
     if (!$connexion) {
         die("Connection failed: " . mysqli_connect_error());
     }
-    $sql = "SELECT * FROM musiques WHERE  Asc limit 100";
+    $sql = 'SELECT * FROM musiques WHERE TopGenre LIKE "%'.$searchText.'%" limit 200';
+    echo $sql;
+    affichageData($sql, $searchText);
+    $connexion->close();
 }
 
-function affichageData($query = "SELECT * from musiques limit 100"){
+function affichageData($query = "SELECT * from musiques limit 200", $searchText = ""){
     
     global $connexion;
     $result = mysqli_query($connexion, $query);
@@ -71,6 +78,9 @@ function affichageData($query = "SELECT * from musiques limit 100"){
                             <thead class="table-dark">
                                 <tr>';
     while ($property = mysqli_fetch_field($result)){
+        if ($searchText != ""){
+            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&type='.$searchText.'\'">' . $property->name . '</td>';
+        }
         $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'\'">' . $property->name . '</td>';  
         array_Push($all_property, $property->name); 
     }
