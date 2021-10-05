@@ -63,11 +63,13 @@ function affichageData($query = "SELECT * from musiques limit 100"){
     global $connexion;
     $result = mysqli_query($connexion, $query);
     $all_property = array();
-
+    echo '<br><br>';
     $html = '';
-	$html .= '<table class="table table-bordered table-striped table-hover">
-				<thead class="table-dark">
-					<tr>';
+	$html .= '<div class="container-fluid">
+                    <div class="row">
+                        <table class="table table-bordered table-striped table-hover">
+                            <thead class="table-dark">
+                                <tr>';
     while ($property = mysqli_fetch_field($result)){
         $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'\'">' . $property->name . '</td>';  
         array_Push($all_property, $property->name); 
@@ -83,7 +85,9 @@ function affichageData($query = "SELECT * from musiques limit 100"){
         $html .= '</tr>';
     }
     $html .= '	</tbody>
-			 </table>';
+			 </table>
+             </div>
+             </div>';
 
     echo $html;
 }
