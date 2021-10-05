@@ -46,12 +46,12 @@
     //recuperationData();
     if (isset($_GET["type"])){
       if (isset($_GET["tri"])){
-        trieData($_GET["tri"],$_GET["type"]);
+        trieData($_GET["tri"],$_GET["type"],$_GET["order"]);
       }
       else {rechercher($_GET["type"]);}
     }
     else if (isset($_GET["tri"])){
-      trieData($_GET["tri"]);
+      trieData($_GET["tri"],"",$_GET["order"]);
     }
     else affichageData();
 ?>
