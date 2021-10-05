@@ -1,1 +1,1 @@
-Projet réalisé par Karelle Nguifeu, Arthur Secher-Cabot, Ludovic Rocher, Salaheddine Boudg et Loïc Boivin
+Projet réalisé par Karelle Mintchueng, Arthur Secher-Cabot, Ludovic Rocher, Salaheddine Boudg et Loïc Boivin
