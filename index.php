@@ -41,10 +41,10 @@
           </ul>
       </div>
     </div>
-
+    <br><br>
     <div class="container">
       <div class="row mt-5">
-        <div class="col-sm-6">
+        <div class="col-sm-6 mt-5">
           <div class="card text-center">
             <div class="row g-0">
               <div class="col-md-4 p-4">
@@ -54,24 +54,24 @@
                 <div class="card-body">
                   <h5 class="card-title">Classement de toutes les musiques de Spotify</h5>
                   <p class="card-text">Vous ne savez pas où chercher? Pourquoi choisir, cherchez sur toute la base.</p>
-                  <a href="classementMusiques.php?type=fr" class="btn btn-dark">Allez voir!</a>
+                  <a href="classementMusiques.php?" class="btn btn-dark">Allez voir!</a>
                 </div>
               </div>
             </div>  
           </div>
         </div>
       
-        <div class="col-sm-6">
+        <div class="col-sm-6 mt-5">
           <div class="card text-center">
             <div class="row g-0">
               <div class="col-md-4 p-4">
-                <img src="images/france.png" alt="love france" class="card-img-top">
+                <img src="images/cd.png" alt="love france" class="card-img-top">
               </div>
             <div class="col-md-8">
               <div class="card-body">
-                <h5 class="card-title">Classement musiques Françaises sur Spotify</h5>
-                <p class="card-text">Vous êtes un adepte féru des musiques françaises? Cette recherche va vous convenir.</p>
-                <a href="classementMusiques.php?type=fr" class="btn btn-dark">Allez voir!</a>
+                <h5 class="card-title">Classement de toutes les musiques pop sur Spotify</h5>
+                <p class="card-text">Vous êtes un adepte féru des musiques pop? Cette recherche va vous convenir.</p>
+                <a href="classementMusiques.php?type=pop" class="btn btn-dark">Allez voir!</a>
               </div>
             </div>
           </div>
