@@ -38,19 +38,25 @@ function recuperationData()
     }
 }
 
-function trieData($colonne, $searchText = "")
+function trieData($colonne, $searchText = "", $order = "up")
 {
     global $connexion;
     if (!$connexion) {
-    die("Connection failed: " . mysqli_connect_error());
+        die("Connection failed: " . mysqli_connect_error());
     }
-    if ($searchText != ""){
+    if ($searchText != "" and $order == "up"){
         $sql = 'SELECT * FROM musiques WHERE TopGenre LIKE "%'.$searchText.'%" ORDER BY '.$colonne.' Asc limit 200';
     }
-    else {
+    else if ($searchText != "" and $order == "down"){
+        $sql = 'SELECT * FROM musiques WHERE TopGenre LIKE "%'.$searchText.'%" ORDER BY '.$colonne.' Desc limit 200';
+    }
+    else if ($searchText == "" and $order == "up"){
         $sql = "SELECT * FROM musiques ORDER BY $colonne Asc limit 200";
     }
-    affichageData($sql, $searchText);
+    else {
+        $sql = "SELECT * FROM musiques ORDER BY $colonne Desc limit 200";
+    }
+    affichageData($sql, $searchText, $order);
     $connexion->close();
 }
 
@@ -60,14 +66,14 @@ function rechercher($searchText){
         die("Connection failed: " . mysqli_connect_error());
     }
     $sql = 'SELECT * FROM musiques WHERE TopGenre LIKE "%'.$searchText.'%" limit 200';
-    echo $sql;
     affichageData($sql, $searchText);
     $connexion->close();
 }
 
-function affichageData($query = "SELECT * from musiques limit 200", $searchText = ""){
+function affichageData($query = "SELECT * from musiques limit 200", $searchText = "", $order = ""){
     
     global $connexion;
+    echo $searchText;
     $result = mysqli_query($connexion, $query);
     $all_property = array();
     echo '<br><br>';
@@ -78,10 +84,19 @@ function affichageData($query = "SELECT * from musiques limit 200", $searchText 
                             <thead class="table-dark">
                                 <tr>';
     while ($property = mysqli_fetch_field($result)){
-        if ($searchText != ""){
-            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&type='.$searchText.'\'">' . $property->name . '</td>';
+        if ($searchText != "" and isset($_GET["tri"]) and $_GET["tri"]==$property->name and $order=="up"){
+            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&type='.$searchText.'&order=down\'">' . $property->name . '</td>';
         }
-        $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'\'">' . $property->name . '</td>';  
+        else if ($searchText != "" and isset($_GET["tri"]) and $_GET["tri"]==$property->name and $order=="down"){
+            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&type='.$searchText.'&order=up\'">' . $property->name . '</td>';
+        }
+        else if ($searchText != ""){
+            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&type='.$searchText.'&order=up\'">' . $property->name . '</td>';
+        }
+        else if ($searchText == "" and isset($_GET["tri"]) and $_GET["tri"]==$property->name and $order=="up"){
+            $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&order=down\'">' . $property->name . '</td>';
+        }
+        else $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'&order=up\'">' . $property->name . '</td>';  
         array_Push($all_property, $property->name); 
     }
     $html .= '</tr>
