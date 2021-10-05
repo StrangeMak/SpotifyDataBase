@@ -35,16 +35,33 @@
       <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
       <ul class="nav justify-content-center">
         <li class="nav-item ms-2">
-          <a class="nav-link text-white" href="#">Accueil</a>
+          <a class="nav-link text-white" href="index.php">Accueil</a>
         </li>
       </ul>
     </nav>
   </header>
 
-<?php
-    //recuperationData();
-    affichageData();
-?>
+
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Classement de toutes les musiques de Spotify</h5>
+        <p class="card-text">Vous ne savez pas où chercher? Pourquoi choisir, cherchez sur toute la base.</p>
+        <a href="classementMusiques.php" class="btn btn-primary">Allez voir!</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Classement musiques Française</h5>
+        <p class="card-text">Vous êtes un adepte féru des musiques françaises. Cette recherche va vous convenir.</p>
+        <a href="classementMusiques.php?type=fr" class="btn btn-primary">Allez voir!</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
