@@ -44,7 +44,13 @@
   
 <?php
     //recuperationData();
-    if (isset($_GET["tri"])){
+    if (isset($_GET["type"])){
+      if (isset($_GET["tri"])){
+        trieData($_GET["tri"],$_GET["type"]);
+      }
+      else {rechercher($_GET["type"]);}
+    }
+    else if (isset($_GET["tri"])){
       trieData($_GET["tri"]);
     }
     else affichageData();
