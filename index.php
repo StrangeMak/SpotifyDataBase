@@ -5,7 +5,6 @@
     $MDP    = "mdp";                  
     $BD     = "spotify";
 
-    echo "<br><br><br>";
     $connexion = ConnectDataBase($SERVER, $USER, $MDP, $BD); // connexion à la BD
 ?>
 
@@ -26,43 +25,59 @@
 
     <title>Classement musiques Spotify</title>
   </head>
+
   <body style="background-color: #f4efe7">
-  <header>
-    <nav class="navbar py-0 navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
-      <a class="navbar-brand" href="index.php">
-        <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
-      </a>
-      <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
-      <ul class="nav justify-content-center">
-        <li class="nav-item ms-2">
-          <a class="nav-link text-white" href="index.php">Accueil</a>
-        </li>
-      </ul>
-    </nav>
-  </header>
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Classement de toutes les musiques de Spotify</h5>
-        <p class="card-text">Vous ne savez pas où chercher? Pourquoi choisir, cherchez sur toute la base.</p>
-        <a href="classementMusiques.php" class="btn btn-primary">Allez voir!</a>
+    <div class="container">
+      <div class="row mb-3">
+        <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
+          <a class="navbar-brand" href="index.php">
+            <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
+          </a>
+          <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
+          <ul class="nav justify-content-center">
+            <li class="nav-item ms-2">
+              <a class="nav-link text-white" href="index.php">Accueil</a>
+            </li>
+          </ul>
       </div>
     </div>
-  </div>
-  <div class="col-sm-6">
-    <div class="card">
-      <div class="card-body">
-        <h5 class="card-title">Classement musiques Française</h5>
-        <p class="card-text">Vous êtes un adepte féru des musiques françaises. Cette recherche va vous convenir.</p>
-        <a href="classementMusiques.php?type=fr" class="btn btn-primary">Allez voir!</a>
+
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="row g-0">
+              <div class="col-md-4 p-4">
+                <img src="images/listening.png" alt="music is fun" class="card-img-top">
+              </div>
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">Classement de toutes les musiques de Spotify</h5>
+                  <p class="card-text">Vous ne savez pas où chercher? Pourquoi choisir, cherchez sur toute la base.</p>
+                  <a href="classementMusiques.php?type=fr" class="btn btn-dark">Allez voir!</a>
+                </div>
+              </div>
+            </div>  
+          </div>
+        </div>
+      
+        <div class="col-sm-6">
+          <div class="card text-center">
+            <div class="row g-0">
+              <div class="col-md-4 p-4">
+                <img src="images/france.png" alt="love france" class="card-img-top">
+              </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">Classement musiques Françaises sur Spotify</h5>
+                <p class="card-text">Vous êtes un adepte féru des musiques françaises? Cette recherche va vous convenir.</p>
+                <a href="classementMusiques.php?type=fr" class="btn btn-dark">Allez voir!</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</div>
-
 
 
 
