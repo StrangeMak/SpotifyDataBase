@@ -45,13 +45,20 @@ function trieData($colonne)
     die("Connection failed: " . mysqli_connect_error());
     }
 
-    $sql = "SELECT * FROM musiques ORDER BY $colonne Asc";
+    $sql = "SELECT * FROM musiques ORDER BY $colonne Asc limit 100";
     affichageData($sql);
-    $conn->close();
+    $connexion->close();
 }
 
+function rechercher($searchText){
+    global $connexion;
+    if (!$connexion) {
+        die("Connection failed: " . mysqli_connect_error());
+    }
+    $sql = "SELECT * FROM musiques WHERE  Asc limit 100";
+}
 
-function affichageData($query = "SELECT * from musiques limit 1000"){
+function affichageData($query = "SELECT * from musiques limit 100"){
     
     global $connexion;
     $result = mysqli_query($connexion, $query);
@@ -62,7 +69,7 @@ function affichageData($query = "SELECT * from musiques limit 1000"){
 				<thead class="table-dark">
 					<tr>';
     while ($property = mysqli_fetch_field($result)){
-        $html .= '<td>' . $property->name . '</td>';  
+        $html .= '<td style="cursor: pointer" onclick="location.href=\'classementMusiques.php?tri='.$property->name.'\'">' . $property->name . '</td>';  
         array_Push($all_property, $property->name); 
     }
     $html .= '</tr>
