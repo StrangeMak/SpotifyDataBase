@@ -4,8 +4,13 @@
     $USER   = "user";                 
     $MDP    = "mdp";                  
     $BD     = "spotify";
+    $FileBD = "Spotify-2000.csv";
 
-    $connexion = ConnectDataBase($SERVER, $USER, $MDP, $BD); // connexion à la BD
+    //Création de l'objet DataBase
+    $myDataBase = new DataBase($SERVER, $USER, $MDP, $BD, $FileBD);
+
+    //Connexion à la base de donnée
+    $myDataBase->ConnectDataBase();
 ?>
 
 
@@ -29,15 +34,19 @@
   <div class="container">
     <div class="row mb-3">
       <nav class="navbar py-0 navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
-        <a class="navbar-brand" href="index.php">
+        <a class="navbar-brand" href="classementMusiques.php">
           <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
         </a>
         <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
-        <ul class="nav justify-content-center">
+        <ul class="nav me-5">
           <li class="nav-item ms-2">
             <a class="nav-link text-white" href="index.php">Accueil</a>
           </li>
         </ul>
+        <form class="d-flex">
+          <input class="form-control ms-5 me-2" name="type" id="type" placeholder="Rechercher sur la base" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Recherche</button>
+        </form>
       </nav>
     </div>
   </div>
@@ -46,14 +55,14 @@
     //recuperationData();
     if (isset($_GET["type"])){
       if (isset($_GET["tri"])){
-        trieData($_GET["tri"],$_GET["type"],$_GET["order"]);
+        $myDataBase->trieData($_GET["tri"],$_GET["type"],$_GET["order"]);
       }
-      else {rechercher($_GET["type"]);}
+      else {$myDataBase->rechercher($_GET["type"]);}
     }
     else if (isset($_GET["tri"])){
-      trieData($_GET["tri"],"",$_GET["order"]);
+      $myDataBase->trieData($_GET["tri"],"",$_GET["order"]);
     }
-    else affichageData();
+    else $myDataBase->affichageData();
 ?>
 
 
