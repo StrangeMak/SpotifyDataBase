@@ -4,8 +4,11 @@
     $USER   = "user";                 
     $MDP    = "mdp";                  
     $BD     = "spotify";
+    $FileBD = "Spotify-2000.csv";
 
-    $connexion = ConnectDataBase($SERVER, $USER, $MDP, $BD); // connexion à la BD
+    $myDataBase = new DataBase($SERVER, $USER, $MDP, $BD, $FileBD);
+
+    $myDataBase->ConnectDataBase();
 ?>
 
 
@@ -30,7 +33,7 @@
     <div class="container">
       <div class="row mb-3">
         <nav class="navbar navbar-expand-lg fixed-top navbar-dark" style="background-color: black;">
-          <a class="navbar-brand" href="index.php">
+          <a class="navbar-brand" href="classementMusiques.php">
             <img src="images/Spotify.jpg" width="95" height="54" alt="Info Logo" />
           </a>
           <span class="navbar-text ms-3" style="color: white; font-weight: bold; font-size: 1em;"> Meilleures musiques Spotify </span>
